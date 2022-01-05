@@ -8,10 +8,14 @@ import java.io.Serializable;
 public class Log implements Serializable {
 
     @Id
+    @Column(name = "log_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "log_description")
     private String logDescription;
+    @Column(name = "log_time")
     private String logTime;
+    @Column(name = "log_date")
     private String logDate;
 
     public Log(String logDescription, String logTime, String logDate, long id) {
