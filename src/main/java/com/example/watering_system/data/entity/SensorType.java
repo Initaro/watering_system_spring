@@ -7,16 +7,15 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- *
  * @author halo3
  */
 @Entity
 @Table(name = "sensor_types")
 @NamedQueries({
-    @NamedQuery(name = "SensorType.findAll", query = "SELECT s FROM SensorType s"),
-    @NamedQuery(name = "SensorType.findBySensorTypeId", query = "SELECT s FROM SensorType s WHERE s.sensorTypeId = :sensorTypeId"),
-    @NamedQuery(name = "SensorType.findBySensorType", query = "SELECT s FROM SensorType s WHERE s.sensorType = :sensorType"),
-    @NamedQuery(name = "SensorType.findByDataType", query = "SELECT s FROM SensorType s WHERE s.dataType = :dataType")})
+        @NamedQuery(name = "SensorType.findAll", query = "SELECT s FROM SensorType s"),
+        @NamedQuery(name = "SensorType.findBySensorTypeId", query = "SELECT s FROM SensorType s WHERE s.sensorTypeId = :sensorTypeId"),
+        @NamedQuery(name = "SensorType.findBySensorType", query = "SELECT s FROM SensorType s WHERE s.sensorType = :sensorType"),
+        @NamedQuery(name = "SensorType.findByDataType", query = "SELECT s FROM SensorType s WHERE s.dataType = :dataType")})
 public class SensorType implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -34,7 +33,7 @@ public class SensorType implements Serializable {
     private String dataType;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sensorTypeId")
-    @JsonIgnoreProperties("sensorTypeId")
+    @JsonIgnoreProperties("")
     private List<Sensor> sensorList;
 
     public SensorType() {}
@@ -105,5 +104,5 @@ public class SensorType implements Serializable {
     public String toString() {
         return "com.example.watering_system.data.entity.watering_system.SensorType[ sensorTypeId=" + sensorTypeId + " ]";
     }
-    
+
 }

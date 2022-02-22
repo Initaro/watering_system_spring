@@ -1,6 +1,5 @@
 package com.example.watering_system.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
@@ -17,14 +16,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
- *
  * @author halo3
  */
 @Entity
 @Table(name = "sensors")
 @NamedQueries({
-    @NamedQuery(name = "Sensor.findAll", query = "SELECT s FROM Sensor s"),
-    @NamedQuery(name = "Sensor.findBySensorId", query = "SELECT s FROM Sensor s WHERE s.sensorId = :sensorId")})
+        @NamedQuery(name = "Sensor.findAll", query = "SELECT s FROM Sensor s"),
+        @NamedQuery(name = "Sensor.findBySensorId", query = "SELECT s FROM Sensor s WHERE s.sensorId = :sensorId")})
 public class Sensor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,13 +34,13 @@ public class Sensor implements Serializable {
     private Integer sensorId;
 
     @JoinColumn(name = "device_id", referencedColumnName = "device_id")
-    @JsonIgnore
     @ManyToOne
+    @JsonIgnoreProperties("")
     private Device deviceId;
 
     @JoinColumn(name = "sensor_type_id", referencedColumnName = "sensor_type_id")
-    @JsonIgnoreProperties("sensorList")
     @ManyToOne(optional = false)
+    @JsonIgnoreProperties("")
     private SensorType sensorTypeId;
 
     public Sensor() {}
@@ -99,5 +97,5 @@ public class Sensor implements Serializable {
     public String toString() {
         return "com.example.watering_system.data.entity.watering_system.Sensor[ sensorId=" + sensorId + " ]";
     }
-    
+
 }

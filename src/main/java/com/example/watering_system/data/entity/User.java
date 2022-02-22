@@ -1,10 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.example.watering_system.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
@@ -13,19 +8,18 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- *
  * @author halo3
  */
 @Entity
 @Table(name = "users")
 @NamedQueries({
-    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
-    @NamedQuery(name = "User.findByUserId", query = "SELECT u FROM User u WHERE u.userId = :userId"),
-    @NamedQuery(name = "User.findByUserFullName", query = "SELECT u FROM User u WHERE u.userFullName = :userFullName"),
-    @NamedQuery(name = "User.findByUserLogin", query = "SELECT u FROM User u WHERE u.userLogin = :userLogin"),
-    @NamedQuery(name = "User.findByUserPass", query = "SELECT u FROM User u WHERE u.userPass = :userPass"),
-    @NamedQuery(name = "User.findByUserCreateDate", query = "SELECT u FROM User u WHERE u.userCreateDate = :userCreateDate"),
-    @NamedQuery(name = "User.findByUserAdmin", query = "SELECT u FROM User u WHERE u.userAdmin = :userAdmin")})
+        @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
+        @NamedQuery(name = "User.findByUserId", query = "SELECT u FROM User u WHERE u.userId = :userId"),
+        @NamedQuery(name = "User.findByUserFullName", query = "SELECT u FROM User u WHERE u.userFullName = :userFullName"),
+        @NamedQuery(name = "User.findByUserLogin", query = "SELECT u FROM User u WHERE u.userLogin = :userLogin"),
+        @NamedQuery(name = "User.findByUserPass", query = "SELECT u FROM User u WHERE u.userPass = :userPass"),
+        @NamedQuery(name = "User.findByUserCreateDate", query = "SELECT u FROM User u WHERE u.userCreateDate = :userCreateDate"),
+        @NamedQuery(name = "User.findByUserAdmin", query = "SELECT u FROM User u WHERE u.userAdmin = :userAdmin")})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,15 +46,14 @@ public class User implements Serializable {
     private boolean userAdmin;
 
     @OneToMany(mappedBy = "userId")
-    @JsonIgnore
+    @JsonIgnoreProperties("")
     private List<Device> deviceList;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    @JsonIgnoreProperties("userId")
+    @JsonIgnoreProperties("")
     private List<Log> logList;
 
-    public User() {
-    }
+    public User() {}
 
     public User(Integer userId) {
         this.userId = userId;
@@ -162,5 +155,5 @@ public class User implements Serializable {
     public String toString() {
         return "com.example.watering_system.data.entity.watering_system.User[ userId=" + userId + " ]";
     }
-    
+
 }

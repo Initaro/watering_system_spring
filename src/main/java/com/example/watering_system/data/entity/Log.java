@@ -7,17 +7,16 @@ import java.util.Date;
 import javax.persistence.*;
 
 /**
- *
  * @author halo3
  */
 @Entity
 @Table(name = "logs")
 @NamedQueries({
-    @NamedQuery(name = "Log.findAll", query = "SELECT l FROM Log l"),
-    @NamedQuery(name = "Log.findByLogDate", query = "SELECT l FROM Log l WHERE l.logDate = :logDate"),
-    @NamedQuery(name = "Log.findByLogDescription", query = "SELECT l FROM Log l WHERE l.logDescription = :logDescription"),
-    @NamedQuery(name = "Log.findByLogLevel", query = "SELECT l FROM Log l WHERE l.logLevel = :logLevel"),
-    @NamedQuery(name = "Log.findByLogId", query = "SELECT l FROM Log l WHERE l.logId = :logId")})
+        @NamedQuery(name = "Log.findAll", query = "SELECT l FROM Log l"),
+        @NamedQuery(name = "Log.findByLogDate", query = "SELECT l FROM Log l WHERE l.logDate = :logDate"),
+        @NamedQuery(name = "Log.findByLogDescription", query = "SELECT l FROM Log l WHERE l.logDescription = :logDescription"),
+        @NamedQuery(name = "Log.findByLogLevel", query = "SELECT l FROM Log l WHERE l.logLevel = :logLevel"),
+        @NamedQuery(name = "Log.findByLogId", query = "SELECT l FROM Log l WHERE l.logId = :logId")})
 public class Log implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,7 +26,7 @@ public class Log implements Serializable {
     @Basic(optional = false)
     @Column(name = "log_id")
     private Integer logId;
-    //@Basic(optional = false)
+    @Basic(optional = false)
     @Column(name = "log_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date logDate;
@@ -40,7 +39,7 @@ public class Log implements Serializable {
 
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     @ManyToOne(optional = false)
-    @JsonIgnoreProperties("logList")
+    @JsonIgnoreProperties("")
     private User userId;
 
     public Log() {}

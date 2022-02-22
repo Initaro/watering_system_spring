@@ -63,8 +63,8 @@ public class Configuration implements Serializable {
     private int configurationChangedBy;
 
     @JoinColumn(name = "valve_id", referencedColumnName = "valve_id")
-    @JsonIgnoreProperties("configurationList")
     @ManyToOne(optional = false)
+    @JsonIgnoreProperties("")
     private Valve valveId;
 
     public Configuration() {}

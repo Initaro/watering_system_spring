@@ -1,6 +1,5 @@
 package com.example.watering_system.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
@@ -19,16 +18,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
  * @author halo3
  */
 @Entity
 @Table(name = "devices")
 @NamedQueries({
-    @NamedQuery(name = "Device.findAll", query = "SELECT d FROM Device d"),
-    @NamedQuery(name = "Device.findByDeviceName", query = "SELECT d FROM Device d WHERE d.deviceName = :deviceName"),
-    @NamedQuery(name = "Device.findByDeviceLocation", query = "SELECT d FROM Device d WHERE d.deviceLocation = :deviceLocation"),
-    @NamedQuery(name = "Device.findByDeviceId", query = "SELECT d FROM Device d WHERE d.deviceId = :deviceId")})
+        @NamedQuery(name = "Device.findAll", query = "SELECT d FROM Device d"),
+        @NamedQuery(name = "Device.findByDeviceName", query = "SELECT d FROM Device d WHERE d.deviceName = :deviceName"),
+        @NamedQuery(name = "Device.findByDeviceLocation", query = "SELECT d FROM Device d WHERE d.deviceLocation = :deviceLocation"),
+        @NamedQuery(name = "Device.findByDeviceId", query = "SELECT d FROM Device d WHERE d.deviceId = :deviceId")})
 public class Device implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,12 +44,12 @@ public class Device implements Serializable {
     private String deviceLocation;
 
     @OneToMany(mappedBy = "deviceId")
-    @JsonIgnore
+    @JsonIgnoreProperties("")
     private List<Sensor> sensorList;
 
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    @JsonIgnore
     @ManyToOne
+    @JsonIgnoreProperties("")
     private User userId;
 
     public Device() {}
@@ -130,5 +128,5 @@ public class Device implements Serializable {
     public String toString() {
         return "com.example.watering_system.data.entity.watering_system.Device[ deviceId=" + deviceId + " ]";
     }
-    
+
 }

@@ -35,11 +35,10 @@ public class Valve implements Serializable {
     private String valveName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "valveId")
-    @JsonIgnoreProperties("valveId")
+    @JsonIgnoreProperties("")
     private List<Configuration> configurationList;
 
-    public Valve() {
-    }
+    public Valve() {}
 
     public Valve(Integer valveId) {
         this.valveId = valveId;
