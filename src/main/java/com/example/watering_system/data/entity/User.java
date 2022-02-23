@@ -1,6 +1,6 @@
 package com.example.watering_system.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -46,11 +46,11 @@ public class User implements Serializable {
     private boolean userAdmin;
 
     @OneToMany(mappedBy = "userId")
-    @JsonIgnoreProperties("")
+    @JsonIgnore
     private List<Device> deviceList;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    @JsonIgnoreProperties("")
+    @JsonIgnore
     private List<Log> logList;
 
     public User() {}

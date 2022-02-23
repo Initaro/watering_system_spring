@@ -1,5 +1,6 @@
 package com.example.watering_system.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
@@ -44,7 +45,7 @@ public class Device implements Serializable {
     private String deviceLocation;
 
     @OneToMany(mappedBy = "deviceId")
-    @JsonIgnoreProperties("")
+    @JsonIgnore
     private List<Sensor> sensorList;
 
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")

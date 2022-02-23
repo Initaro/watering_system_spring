@@ -1,6 +1,6 @@
 package com.example.watering_system.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import java.util.List;
@@ -35,7 +35,7 @@ public class Valve implements Serializable {
     private String valveName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "valveId")
-    @JsonIgnoreProperties("")
+    @JsonIgnore
     private List<Configuration> configurationList;
 
     public Valve() {}
