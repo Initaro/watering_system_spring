@@ -14,4 +14,8 @@ public interface LogService {
     Log updateLog(Log log, int id);
 
     void deleteLogService(int id);
+
+    List<Log> findAllByOrderByLogIdDesc();
+
+    List<Log> findByLogLevelOrderByLogIdDesc(String logLevel);
 }

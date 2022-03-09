@@ -39,4 +39,14 @@ public class LogController {
     public void deleteLog(@PathVariable("id") int id) {
         logService.deleteLogService(id);
     }
+
+    @GetMapping("/get")
+    public List<Log> findAllByOrderByLogIdDesc() {
+        return logService.findAllByOrderByLogIdDesc();
+    }
+
+    @GetMapping("/logLevel/{logLevel}")
+    public List<Log> findByLogLevelOrderByLogIdDesc(@PathVariable("logLevel") String logLevel) {
+        return logService.findByLogLevelOrderByLogIdDesc(logLevel);
+    }
 }

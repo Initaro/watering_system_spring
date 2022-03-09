@@ -1,7 +1,6 @@
 package com.example.watering_system.service.implementation;
 
 import com.example.watering_system.data.entity.Log;
-import com.example.watering_system.data.entity.User;
 import com.example.watering_system.data.repository.LogRepository;
 import com.example.watering_system.service.LogService;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,6 @@ import java.util.List;
 
 @Service
 public class LogImplementation implements LogService {
-
     private final LogRepository logRepository;
 
     public LogImplementation(LogRepository logRepository) {
@@ -42,5 +40,15 @@ public class LogImplementation implements LogService {
     @Override
     public void deleteLogService(int id) {
         logRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Log> findAllByOrderByLogIdDesc() {
+        return logRepository.findAllByOrderByLogIdDesc();
+    }
+
+    @Override
+    public List<Log> findByLogLevelOrderByLogIdDesc(String logLevel) {
+        return logRepository.findByLogLevelOrderByLogIdDesc(logLevel);
     }
 }
