@@ -4,7 +4,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author halo3
@@ -59,10 +71,6 @@ public class Log implements Serializable {
         return logDate;
     }
 
-    public User getUser() {
-        return userId;
-    }
-
     public void setLogDate(Date logDate) {
         this.logDate = logDate;
     }
@@ -112,7 +120,9 @@ public class Log implements Serializable {
         if (!(object instanceof Log)) {
             return false;
         }
+
         Log other = (Log) object;
+
         if ((this.logId == null && other.logId != null) || (this.logId != null && !this.logId.equals(other.logId))) {
             return false;
         }
@@ -129,4 +139,5 @@ public class Log implements Serializable {
                 ", userId=" + userId +
                 '}';
     }
+
 }

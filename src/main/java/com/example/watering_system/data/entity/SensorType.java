@@ -4,7 +4,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * @author halo3
@@ -93,7 +103,9 @@ public class SensorType implements Serializable {
         if (!(object instanceof SensorType)) {
             return false;
         }
+
         SensorType other = (SensorType) object;
+
         if ((this.sensorTypeId == null && other.sensorTypeId != null) || (this.sensorTypeId != null && !this.sensorTypeId.equals(other.sensorTypeId))) {
             return false;
         }
@@ -102,7 +114,7 @@ public class SensorType implements Serializable {
 
     @Override
     public String toString() {
-        return "com.example.watering_system.data.entity.watering_system.SensorType[ sensorTypeId=" + sensorTypeId + " ]";
+        return "com.example.watering_system.data.entity.watering_system.resources.SensorType[ sensorTypeId=" + sensorTypeId + " ]";
     }
 
 }

@@ -1,9 +1,12 @@
 package com.example.watering_system.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -61,6 +65,10 @@ public class Configuration implements Serializable {
     @Basic(optional = false)
     @Column(name = "configuration_changed_by")
     private int configurationChangedBy;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "configurationId")
+    @JsonIgnore
+    private List<WateringHour> wateringHourList;
 
     @JoinColumn(name = "valve_id", referencedColumnName = "valve_id")
     @ManyToOne(optional = false)
@@ -159,6 +167,14 @@ public class Configuration implements Serializable {
         this.configurationId = configurationId;
     }
 
+    public List<WateringHour> getWateringHourList() {
+        return wateringHourList;
+    }
+
+    public void setWateringHourList(List<WateringHour> wateringHourList) {
+        this.wateringHourList = wateringHourList;
+    }
+
     public Valve getValveId() {
         return valveId;
     }
@@ -180,7 +196,9 @@ public class Configuration implements Serializable {
         if (!(object instanceof Configuration)) {
             return false;
         }
+
         Configuration other = (Configuration) object;
+
         if ((this.configurationId == null && other.configurationId != null) || (this.configurationId != null && !this.configurationId.equals(other.configurationId))) {
             return false;
         }
@@ -189,7 +207,7 @@ public class Configuration implements Serializable {
 
     @Override
     public String toString() {
-        return "com.example.watering_system.data.entity.watering_system.Configuration[ configurationId=" + configurationId + " ]";
+        return "com.example.watering_system.data.entity.watering_system.resources.Configuration[ configurationId=" + configurationId + " ]";
     }
 
 }

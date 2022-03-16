@@ -118,7 +118,9 @@ public class Device implements Serializable {
         if (!(object instanceof Device)) {
             return false;
         }
+
         Device other = (Device) object;
+
         if ((this.deviceId == null && other.deviceId != null) || (this.deviceId != null && !this.deviceId.equals(other.deviceId))) {
             return false;
         }
@@ -127,7 +129,7 @@ public class Device implements Serializable {
 
     @Override
     public String toString() {
-        return "com.example.watering_system.data.entity.watering_system.Device[ deviceId=" + deviceId + " ]";
+        return "com.example.watering_system.data.entity.watering_system.resources.Device[ deviceId=" + deviceId + " ]";
     }
 
 }

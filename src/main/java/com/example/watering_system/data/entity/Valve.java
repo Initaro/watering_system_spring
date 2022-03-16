@@ -8,6 +8,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -26,7 +28,9 @@ import javax.persistence.Table;
 public class Valve implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "valve_id")
     private Integer valveId;
@@ -86,7 +90,9 @@ public class Valve implements Serializable {
         if (!(object instanceof Valve)) {
             return false;
         }
+
         Valve other = (Valve) object;
+
         if ((this.valveId == null && other.valveId != null) || (this.valveId != null && !this.valveId.equals(other.valveId))) {
             return false;
         }
@@ -95,7 +101,7 @@ public class Valve implements Serializable {
 
     @Override
     public String toString() {
-        return "com.example.watering_system.data.entity.watering_system.Valve[ valveId=" + valveId + " ]";
+        return "com.example.watering_system.data.entity.watering_system.resources.Valve[ valveId=" + valveId + " ]";
     }
 
 }

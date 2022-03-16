@@ -5,7 +5,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author halo3
@@ -144,7 +156,9 @@ public class User implements Serializable {
         if (!(object instanceof User)) {
             return false;
         }
+
         User other = (User) object;
+
         if ((this.userId == null && other.userId != null) || (this.userId != null && !this.userId.equals(other.userId))) {
             return false;
         }
@@ -153,7 +167,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "com.example.watering_system.data.entity.watering_system.User[ userId=" + userId + " ]";
+        return "com.example.watering_system.data.entity.watering_system.resources.User[ userId=" + userId + " ]";
     }
 
 }

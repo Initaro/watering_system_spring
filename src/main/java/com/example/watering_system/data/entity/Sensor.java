@@ -3,7 +3,9 @@ package com.example.watering_system.data.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -42,6 +45,9 @@ public class Sensor implements Serializable {
     @ManyToOne(optional = false)
     @JsonIgnoreProperties("")
     private SensorType sensorTypeId;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sensorId")
+    private List<SensorData> sensorDataList;
 
     public Sensor() {}
 
@@ -73,6 +79,14 @@ public class Sensor implements Serializable {
         this.sensorTypeId = sensorTypeId;
     }
 
+    public List<SensorData> getSensorDataList() {
+        return sensorDataList;
+    }
+
+    public void setSensorDataList(List<SensorData> sensorDataList) {
+        this.sensorDataList = sensorDataList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -86,7 +100,9 @@ public class Sensor implements Serializable {
         if (!(object instanceof Sensor)) {
             return false;
         }
+
         Sensor other = (Sensor) object;
+
         if ((this.sensorId == null && other.sensorId != null) || (this.sensorId != null && !this.sensorId.equals(other.sensorId))) {
             return false;
         }
@@ -95,7 +111,7 @@ public class Sensor implements Serializable {
 
     @Override
     public String toString() {
-        return "com.example.watering_system.data.entity.watering_system.Sensor[ sensorId=" + sensorId + " ]";
+        return "com.example.watering_system.data.entity.watering_system.resources.Sensor[ sensorId=" + sensorId + " ]";
     }
 
 }

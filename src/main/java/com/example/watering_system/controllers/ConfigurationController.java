@@ -39,4 +39,9 @@ public class ConfigurationController {
     public void deleteConfiguration(@PathVariable("id") int id) {
         configurationsService.deleteConfigurationService(id);
     }
+
+    @RequestMapping("/activeTime/{id}")
+    public int getActiveTime(@PathVariable("id") int id) {
+        return configurationsService.getActiveTime(id);
+    }
 }
