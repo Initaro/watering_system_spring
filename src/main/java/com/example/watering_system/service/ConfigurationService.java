@@ -14,4 +14,6 @@ public interface ConfigurationService {
     Configuration updateConfiguration(Configuration configuration, int id);
 
     void deleteConfigurationService(int id);
+
+    int getActiveTime(int id);
 }

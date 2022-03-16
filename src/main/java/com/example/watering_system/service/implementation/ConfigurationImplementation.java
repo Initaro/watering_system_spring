@@ -47,4 +47,11 @@ public class ConfigurationImplementation implements ConfigurationService {
     public void deleteConfigurationService(int id) {
         configurationsRepository.deleteById(id);
     }
+
+    @Override
+    public int getActiveTime(int id) {
+        Configuration configuration = getConfigurationService(id);
+
+        return configuration.getActiveTime();
+    }
 }
