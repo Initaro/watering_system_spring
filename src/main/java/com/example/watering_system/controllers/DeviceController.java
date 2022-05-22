@@ -17,12 +17,12 @@ public class DeviceController {
 
     @GetMapping
     public List<Device> getDevice() {
-        return deviceService.getDeviceService();
+        return deviceService.getAllDevices();
     }
 
     @RequestMapping("/{id}")
     public Device getDevice(@PathVariable("id") int id) {
-        return deviceService.getDeviceService(id);
+        return deviceService.getAllDevices(id);
     }
 
     @PostMapping

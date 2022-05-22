@@ -5,9 +5,9 @@ import com.example.watering_system.data.entity.Device;
 import java.util.List;
 
 public interface DeviceService {
-    List<Device> getDeviceService();
+    List<Device> getAllDevices();
 
-    Device getDeviceService(int id);
+    Device getAllDevices(int id);
 
     Device createDevice(Device device);
 

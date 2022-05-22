@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 @Component
 public class LocalDateConverter implements Converter<String, LocalDate> {
-
     private static final List<String> SUPPORTED_FORMATS = Arrays.asList("dd-MM-yyyy", "yyyy-MM-dd", "MM-dd-yyyy");
     private static final List<DateTimeFormatter> DATE_TIME_FORMATTERS = SUPPORTED_FORMATS
             .stream()
@@ -21,9 +20,7 @@ public class LocalDateConverter implements Converter<String, LocalDate> {
             .collect(Collectors.toList());
 
     @Override
-
     public LocalDate convert(String s) {
-
         for (DateTimeFormatter dateTimeFormatter : DATE_TIME_FORMATTERS) {
             try {
                 return LocalDate.parse(s, dateTimeFormatter);

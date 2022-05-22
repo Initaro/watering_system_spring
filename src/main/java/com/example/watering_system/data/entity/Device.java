@@ -43,6 +43,9 @@ public class Device implements Serializable {
     @Basic(optional = false)
     @Column(name = "device_location")
     private String deviceLocation;
+    @Basic(optional = false)
+    @Column(name = "device_endpoint")
+    private String deviceEndpoint;
 
     @OneToMany(mappedBy = "deviceId")
     @JsonIgnore
@@ -59,10 +62,11 @@ public class Device implements Serializable {
         this.deviceId = deviceId;
     }
 
-    public Device(Integer deviceId, String deviceName, String deviceLocation) {
+    public Device(Integer deviceId, String deviceName, String deviceLocation, String deviceEndpoint) {
         this.deviceId = deviceId;
         this.deviceName = deviceName;
         this.deviceLocation = deviceLocation;
+        //this.deviceEndpoint = deviceEndpoint;
     }
 
     public String getDeviceName() {
@@ -105,6 +109,14 @@ public class Device implements Serializable {
         this.userId = userId;
     }
 
+    public String getDeviceEndpoint() {
+        return deviceEndpoint;
+    }
+
+    public void setDeviceEndpoint(String deviceEndpoint) {
+        this.deviceEndpoint = deviceEndpoint;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -127,9 +139,16 @@ public class Device implements Serializable {
         return true;
     }
 
+
     @Override
     public String toString() {
-        return "com.example.watering_system.data.entity.watering_system.resources.Device[ deviceId=" + deviceId + " ]";
+        return "Device{" +
+                "deviceId=" + deviceId +
+                ", deviceName='" + deviceName + '\'' +
+                ", deviceLocation='" + deviceLocation + '\'' +
+                ", deviceEndpoint='" + deviceEndpoint + '\'' +
+             //   ", sensorList=" + sensorList +
+                ", userId=" + userId +
+                '}';
     }
-
 }

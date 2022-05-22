@@ -17,12 +17,12 @@ public class DeviceImplementation implements DeviceService {
     }
 
     @Override
-    public List<Device> getDeviceService() {
+    public List<Device> getAllDevices() {
         return deviceRepository.findAll();
     }
 
     @Override
-    public Device getDeviceService(int id) {
+    public Device getAllDevices(int id) {
         return deviceRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid device id: " + id));
     }

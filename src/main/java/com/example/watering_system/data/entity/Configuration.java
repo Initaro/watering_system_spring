@@ -49,19 +49,21 @@ public class Configuration implements Serializable {
     @Column(name = "active_time")
     private int activeTime;
     @Column(name = "monday")
-    private String monday;
+    private Boolean monday;
     @Column(name = "tuesday")
-    private String tuesday;
+    private Boolean tuesday;
     @Column(name = "wednesday")
-    private String wednesday;
+    private Boolean wednesday;
     @Column(name = "thursday")
-    private String thursday;
+    private Boolean thursday;
     @Column(name = "friday")
-    private String friday;
+    private Boolean friday;
     @Column(name = "saturday")
-    private String saturday;
+    private Boolean saturday;
     @Column(name = "sunday")
-    private String sunday;
+    private Boolean sunday;
+    @Column(name = "watering_active_counter")
+    private Integer wateringActiveCounter;
     @Basic(optional = false)
     @Column(name = "configuration_changed_by")
     private int configurationChangedBy;
@@ -95,59 +97,67 @@ public class Configuration implements Serializable {
         this.activeTime = activeTime;
     }
 
-    public String getMonday() {
+    public Integer getWateringActiveCounter() {
+        return wateringActiveCounter;
+    }
+
+    public void setWateringActiveCounter(Integer wateringActiveCounter) {
+        this.wateringActiveCounter = wateringActiveCounter;
+    }
+
+    public Boolean getMonday() {
         return monday;
     }
 
-    public void setMonday(String monday) {
+    public void setMonday(Boolean monday) {
         this.monday = monday;
     }
 
-    public String getTuesday() {
+    public Boolean getTuesday() {
         return tuesday;
     }
 
-    public void setTuesday(String tuesday) {
+    public void setTuesday(Boolean tuesday) {
         this.tuesday = tuesday;
     }
 
-    public String getWednesday() {
+    public Boolean getWednesday() {
         return wednesday;
     }
 
-    public void setWednesday(String wednesday) {
+    public void setWednesday(Boolean wednesday) {
         this.wednesday = wednesday;
     }
 
-    public String getThursday() {
+    public Boolean getThursday() {
         return thursday;
     }
 
-    public void setThursday(String thursday) {
+    public void setThursday(Boolean thursday) {
         this.thursday = thursday;
     }
 
-    public String getFriday() {
+    public Boolean getFriday() {
         return friday;
     }
 
-    public void setFriday(String friday) {
+    public void setFriday(Boolean friday) {
         this.friday = friday;
     }
 
-    public String getSaturday() {
+    public Boolean getSaturday() {
         return saturday;
     }
 
-    public void setSaturday(String saturday) {
+    public void setSaturday(Boolean saturday) {
         this.saturday = saturday;
     }
 
-    public String getSunday() {
+    public Boolean getSunday() {
         return sunday;
     }
 
-    public void setSunday(String sunday) {
+    public void setSunday(Boolean sunday) {
         this.sunday = sunday;
     }
 

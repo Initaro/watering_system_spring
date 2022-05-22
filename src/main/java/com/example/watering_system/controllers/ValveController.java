@@ -17,12 +17,12 @@ public class ValveController {
 
     @GetMapping
     public List<Valve> getValve() {
-        return valveService.getValveService();
+        return valveService.getAllValves();
     }
 
     @RequestMapping("/{id}")
     public Valve getValve(@PathVariable("id") int id) {
-        return valveService.getValveService(id);
+        return valveService.getAllValves(id);
     }
 
     @PostMapping

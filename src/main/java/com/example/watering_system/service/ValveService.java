@@ -5,9 +5,9 @@ import com.example.watering_system.data.entity.Valve;
 import java.util.List;
 
 public interface ValveService {
-    List<Valve> getValveService();
+    List<Valve> getAllValves();
 
-    Valve getValveService(int id);
+    Valve getAllValves(int id);
 
     Valve createValve(Valve valve);
 

@@ -1,6 +1,7 @@
 package com.example.watering_system.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.annotation.Transient;
 
 import java.io.Serializable;
 import java.util.List;
@@ -37,9 +38,27 @@ public class Valve implements Serializable {
     @Basic(optional = false)
     @Column(name = "valve_name")
     private String valveName;
-
+    @Basic(optional = false)
+    @Column(name = "valve_failed_operation")
+    private boolean valveFailedOperation;
+    @Basic(optional = false)
+    @Column(name = "valve_failed_endpoint")
+    private String valveFailedEndPoint;
+    @Basic(optional = false)
+    @Column(name = "valve_running")
+    private boolean valveRunning;
+    @Basic(optional = false)
+    @Column(name = "valve_failed_counter")
+    private Integer valveFailedCounter;
+    @Basic(optional = false)
+    @Column(name = "valve_on_endpoint")
+    private String valveOnEndpoint;
+    @Basic(optional = false)
+    @Column(name = "valve_off_endpoint")
+    private String valveOffEndpoint;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "valveId")
     @JsonIgnore
+    @Transient
     private List<Configuration> configurationList;
 
     public Valve() {}
@@ -48,9 +67,16 @@ public class Valve implements Serializable {
         this.valveId = valveId;
     }
 
-    public Valve(Integer valveId, String valveName) {
+    public Valve(Integer valveId, String valveName, boolean valveFailedOperation, String valveFailedEndPoint, boolean valveRunning, Integer valveFailedCounter, String valveOnEndpoint, String valveOffEndpoint, List<Configuration> configurationList) {
         this.valveId = valveId;
         this.valveName = valveName;
+        this.valveFailedOperation = valveFailedOperation;
+        this.valveFailedEndPoint = valveFailedEndPoint;
+        this.valveRunning = valveRunning;
+        this.valveFailedCounter = valveFailedCounter;
+        this.valveOnEndpoint = valveOnEndpoint;
+        this.valveOffEndpoint = valveOffEndpoint;
+        this.configurationList = configurationList;
     }
 
     public Integer getValveId() {
@@ -77,6 +103,58 @@ public class Valve implements Serializable {
         this.configurationList = configurationList;
     }
 
+    public boolean isFailedOperation() {
+        return valveFailedOperation;
+    }
+
+    public void setValveFailedOperation(boolean valveFailedOperation) {
+        this.valveFailedOperation = valveFailedOperation;
+    }
+
+    public String getValveFailedEndPoint() {
+        return valveFailedEndPoint;
+    }
+
+    public void setValveFailedEndPoint(String valveFailedEndPoint) {
+        this.valveFailedEndPoint = valveFailedEndPoint;
+    }
+
+    public boolean isValveFailedOperation() {
+        return valveFailedOperation;
+    }
+
+    public boolean isValveRunning() {
+        return valveRunning;
+    }
+
+    public void setValveRunning(boolean valveRunning) {
+        this.valveRunning = valveRunning;
+    }
+
+    public Integer getValveFailedCounter() {
+        return valveFailedCounter;
+    }
+
+    public void setValveFailedCounter(Integer valveFailedCounter) {
+        this.valveFailedCounter = valveFailedCounter;
+    }
+
+    public String getValveOnEndpoint() {
+        return valveOnEndpoint;
+    }
+
+    public void setValveOnEndpoint(String valveOnEndpoint) {
+        this.valveOnEndpoint = valveOnEndpoint;
+    }
+
+    public String getValveOffEndpoint() {
+        return valveOffEndpoint;
+    }
+
+    public void setValveOffEndpoint(String valveOffEndpoint) {
+        this.valveOffEndpoint = valveOffEndpoint;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -96,12 +174,22 @@ public class Valve implements Serializable {
         if ((this.valveId == null && other.valveId != null) || (this.valveId != null && !this.valveId.equals(other.valveId))) {
             return false;
         }
+
         return true;
     }
 
     @Override
     public String toString() {
-        return "com.example.watering_system.data.entity.watering_system.resources.Valve[ valveId=" + valveId + " ]";
+        return "Valve{" +
+                "valveId=" + valveId +
+                ", valveName='" + valveName + '\'' +
+                ", valveFailedOperation=" + valveFailedOperation +
+                ", valveFailedEndPoint='" + valveFailedEndPoint + '\'' +
+                ", valveRunning=" + valveRunning +
+                ", valveFailedCounter=" + valveFailedCounter +
+                ", valveOnEndpoint='" + valveOnEndpoint + '\'' +
+                ", valveOffEndpoint='" + valveOffEndpoint + '\'' +
+           //     ", configurationList=" + configurationList +
+                '}';
     }
-
 }

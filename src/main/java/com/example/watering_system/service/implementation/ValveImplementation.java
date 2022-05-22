@@ -17,12 +17,12 @@ public class ValveImplementation implements ValveService {
     }
 
     @Override
-    public List<Valve> getValveService() {
+    public List<Valve> getAllValves() {
         return valveRepository.findAll();
     }
 
     @Override
-    public Valve getValveService(int id) {
+    public Valve getAllValves(int id) {
         return valveRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid valve id: " + id));
     }
@@ -43,4 +43,5 @@ public class ValveImplementation implements ValveService {
     public void deleteValveService(int id) {
         valveRepository.deleteById(id);
     }
+
 }

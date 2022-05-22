@@ -1,15 +1,19 @@
 package com.example.watering_system.SpringHttpClient;
 
+import com.example.watering_system.data.entity.Valve;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-public class RestClient {
+import java.io.IOException;
 
-    private String server = "http://192.168.1.104";
+@Component
+public class RestClient {
     private RestTemplate rest;
     private HttpHeaders headers;
     private HttpStatus status;
@@ -18,18 +22,33 @@ public class RestClient {
         this.rest = new RestTemplate();
         this.headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
-        headers.add("Accept", "*/*");
+        //headers.add("Accept", "*");
     }
 
-    public String get() {
+    public String getDataFromDevice(String endpoint) {
         HttpEntity<String> requestEntity = new HttpEntity<String>("", headers);
-        ResponseEntity<String> responseEntity = rest.exchange(server + "/readData", HttpMethod.GET, requestEntity, String.class);
+        ResponseEntity<String> responseEntity = rest.exchange(endpoint, HttpMethod.GET, requestEntity, String.class);
         this.setStatus(responseEntity.getStatusCode());
         System.out.println("Returned response! " + responseEntity.getBody());
         return responseEntity.getBody();
     }
 
-    /*public String post(String uri, String json) {
+    public String executeOperation(Valve valve, String endpoint) throws IOException {
+        try {
+            HttpEntity<String> requestEntity = new HttpEntity<>("", headers);
+            ResponseEntity<String> responseEntity = rest.exchange(endpoint, HttpMethod.GET, requestEntity, String.class);
+            this.setStatus(responseEntity.getStatusCode());
+            valve.setValveFailedOperation(false);
+            valve.setValveFailedCounter(0);
+            valve.setValveFailedEndPoint("");
+            System.out.println("Returned response! " + responseEntity.getBody());
+            return responseEntity.getBody();
+        } catch (RestClientException e) {
+            throw new IOException(e);
+        }
+    }
+
+   /* public String post(String uri, String json) {
         HttpEntity<String> requestEntity = new HttpEntity<String>(json, headers);
         ResponseEntity<String> responseEntity = rest.exchange(server + uri, HttpMethod.POST, requestEntity, String.class);
         this.setStatus(responseEntity.getStatusCode());
