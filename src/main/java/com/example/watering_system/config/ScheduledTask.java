@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -58,18 +57,17 @@ public class ScheduledTask {
             }
 
             //check current soil moisture data
-            //TO-DO: add temperature, air moisture, barometric pressure critical level measurements
+            //TODO: add temperature, air moisture, barometric pressure critical level measurements
             //esp 8266 - 10-bit analog (0-1023)
-            //
             Device device = deviceService.getAllDevices().get(0);
             System.out.println("Will process the device: " + device);
             try {
                 System.out.println("Will try to read sensor data from device: " + device.getDeviceEndpoint());
                 DeviceData deviceData = new DeviceData(restClient.getDataFromDevice(device.getDeviceEndpoint()));
                 System.out.println("device data: " + deviceData);
-                sensorDataList.add(new SensorData(1, ""+deviceData.getTemperature(), new Date()));
-                sensorDataList.add(new SensorData(2, ""+deviceData.getSoil(), new Date()));
-                sensorDataList.add(new SensorData(3, ""+deviceData.getHumidity(), new Date()));
+                sensorDataList.add(new SensorData(1, "" + deviceData.getTemperature(), new Date()));
+                sensorDataList.add(new SensorData(2, "" + deviceData.getSoil(), new Date()));
+                sensorDataList.add(new SensorData(3, "" + deviceData.getHumidity(), new Date()));
 
                 int num = 40; //TODO replace with actual soil value
 
@@ -94,10 +92,9 @@ public class ScheduledTask {
                 }
             } catch (Exception e) {
                 System.out.println("ERROR: Unable to read sensor data from: " + device.getDeviceEndpoint()
-                + ", reason: " + e.getMessage());
+                        + ", reason: " + e.getMessage());
 
             }
-
 
             //proceed with automation
             //day of watering
@@ -122,7 +119,7 @@ public class ScheduledTask {
 
             // Check if active timer is reached
             System.out.println("Is valve running: " + valve.isValveRunning());
-            if(valve.isValveRunning() && configuration.getWateringActiveCounter() >= activeTime){
+            if (valve.isValveRunning() && configuration.getWateringActiveCounter() >= activeTime) {
                 try {
                     restClient.executeOperation(valve, valve.getValveOffEndpoint());
                 } catch (IOException e) {
@@ -132,7 +129,7 @@ public class ScheduledTask {
                 }
                 // if the operation failed or not, the active time is reached, so we clear the counter
                 configuration.setWateringActiveCounter(0);
-            } else if(valve.isValveRunning()){
+            } else if (valve.isValveRunning()) {
                 configuration.setWateringActiveCounter(configuration.getWateringActiveCounter() + 1);
             } else {
                 if (shouldWateringThisDay(configuration, dayOfWeek.getValue())) {
@@ -166,15 +163,15 @@ public class ScheduledTask {
     }
 
     private boolean shouldWateringThisDay(Configuration configuration, int dayOfWeek) {
-            if ((dayOfWeek == 1 && configuration.getMonday())
-                    || (dayOfWeek == 2 && configuration.getThursday())
-                    || (dayOfWeek == 3 && configuration.getWednesday())
-                    || (dayOfWeek == 4 && configuration.getThursday())
-                    || (dayOfWeek == 5 && configuration.getFriday())
-                    || (dayOfWeek == 6 && configuration.getSaturday())
-                    || (dayOfWeek == 7 && configuration.getSunday())){
-                return true;
-            }
+        if ((dayOfWeek == 1 && configuration.getMonday())
+                || (dayOfWeek == 2 && configuration.getThursday())
+                || (dayOfWeek == 3 && configuration.getWednesday())
+                || (dayOfWeek == 4 && configuration.getThursday())
+                || (dayOfWeek == 5 && configuration.getFriday())
+                || (dayOfWeek == 6 && configuration.getSaturday())
+                || (dayOfWeek == 7 && configuration.getSunday())) {
+            return true;
+        }
         return false;
     }
 

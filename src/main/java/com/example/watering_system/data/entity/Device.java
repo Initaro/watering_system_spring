@@ -147,7 +147,7 @@ public class Device implements Serializable {
                 ", deviceName='" + deviceName + '\'' +
                 ", deviceLocation='" + deviceLocation + '\'' +
                 ", deviceEndpoint='" + deviceEndpoint + '\'' +
-             //   ", sensorList=" + sensorList +
+                //   ", sensorList=" + sensorList +
                 ", userId=" + userId +
                 '}';
     }
