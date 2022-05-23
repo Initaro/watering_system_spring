@@ -1,5 +1,6 @@
 package com.example.watering_system.service.implementation;
 
+import com.example.watering_system.data.entity.Sensor;
 import com.example.watering_system.data.entity.SensorData;
 import com.example.watering_system.data.repository.SensorDataRepository;
 import com.example.watering_system.service.SensorDataService;
@@ -33,14 +34,17 @@ public class SensorDataImplementation implements SensorDataService {
     }
 
     @Override
-    public SensorData updateSensorData(SensorData sensorData, int id) {
-        sensorData.setSensorDataId(id);
-
+    public SensorData updateSensorData(SensorData sensorData) {
         return sensorDataRepository.save(sensorData);
     }
 
     @Override
     public void deleteSensorDataService(int id) {
         sensorDataRepository.deleteById(id);
+    }
+
+    @Override
+    public SensorData findTopBySensorIdOrderBySensorDataIdDesc(Sensor sensor) {
+        return sensorDataRepository.findTopBySensorIdOrderBySensorDataIdDesc(sensor);
     }
 }

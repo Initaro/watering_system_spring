@@ -77,7 +77,8 @@ public class Configuration implements Serializable {
     @JsonIgnoreProperties("")
     private Valve valveId;
 
-    public Configuration() {}
+    public Configuration() {
+    }
 
     public Configuration(Integer configurationId) {
         this.configurationId = configurationId;
@@ -217,7 +218,7 @@ public class Configuration implements Serializable {
 
     @Override
     public String toString() {
-        return "com.example.watering_system.data.entity.watering_system.resources.Configuration[ configurationId=" + configurationId + " ]";
+        return "Configuration " + configurationId;
     }
 
 }

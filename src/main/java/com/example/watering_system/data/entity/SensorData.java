@@ -56,8 +56,8 @@ public class SensorData implements Serializable {
         this.sensorDataId = sensorDataId;
     }
 
-    public SensorData(Integer sensorDataId, String sensorValue, Date sensorValueDate) {
-        this.sensorDataId = sensorDataId;
+    public SensorData(Sensor sensorId, String sensorValue, Date sensorValueDate) {
+        this.sensorId = sensorId;
         this.sensorValue = sensorValue;
         this.sensorValueDate = sensorValueDate;
     }

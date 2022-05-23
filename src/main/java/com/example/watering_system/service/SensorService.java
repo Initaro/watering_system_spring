@@ -5,9 +5,9 @@ import com.example.watering_system.data.entity.Sensor;
 import java.util.List;
 
 public interface SensorService {
-    List<Sensor> getSensorService();
+    List<Sensor> getSensorById();
 
-    Sensor getSensorService(int id);
+    Sensor getSensorById(int id);
 
     Sensor createSensor(Sensor sensor);
 

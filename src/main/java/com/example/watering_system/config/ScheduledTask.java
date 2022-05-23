@@ -3,6 +3,7 @@ package com.example.watering_system.config;
 import com.example.watering_system.SpringHttpClient.RestClient;
 import com.example.watering_system.data.dao.DeviceData;
 import com.example.watering_system.data.entity.*;
+import com.example.watering_system.data.repository.SensorRepository;
 import com.example.watering_system.data.repository.ValveRepository;
 import com.example.watering_system.service.*;
 import org.slf4j.Logger;
@@ -41,6 +42,9 @@ public class ScheduledTask {
     @Autowired
     SensorDataService sensorDataService;
 
+    @Autowired
+    SensorRepository sensorRepository;
+
     @Scheduled(fixedRate = 60000)
     public void worker() {
         System.out.println("Scheduler running...");
@@ -65,14 +69,28 @@ public class ScheduledTask {
                 System.out.println("Will try to read sensor data from device: " + device.getDeviceEndpoint());
                 DeviceData deviceData = new DeviceData(restClient.getDataFromDevice(device.getDeviceEndpoint()));
                 System.out.println("device data: " + deviceData);
-                sensorDataList.add(new SensorData(1, "" + deviceData.getTemperature(), new Date()));
-                sensorDataList.add(new SensorData(2, "" + deviceData.getSoil(), new Date()));
-                sensorDataList.add(new SensorData(3, "" + deviceData.getHumidity(), new Date()));
 
-                int num = 40; //TODO replace with actual soil value
+                List<Sensor> allByDeviceId = sensorRepository.getAllByDeviceId(device.getDeviceId());
+
+                float soilData = 0;
+
+                for (Sensor sensor : allByDeviceId) {
+                    if (sensor.getSensorTypeId().getSensorType().equalsIgnoreCase("Temperature")) {
+                        sensorDataList.add(new SensorData(sensor, "" + deviceData.getTemperature(), new Date()));
+                    }
+
+                    if (sensor.getSensorTypeId().getSensorType().equalsIgnoreCase("Soil")) {
+                        sensorDataList.add(new SensorData(sensor, "" + deviceData.getSoil(), new Date()));
+                        soilData = deviceData.getSoil();
+                    }
+
+                    if (sensor.getSensorTypeId().getSensorType().equalsIgnoreCase("Humidity")) {
+                        sensorDataList.add(new SensorData(sensor, "" + deviceData.getHumidity(), new Date()));
+                    }
+                }
 
                 // for questions only - read 3 times to be sure
-                if (num <= 20 && !valve.isValveRunning()) {
+                if (soilData <= 20 && !valve.isValveRunning()) {
                     try {
                         restClient.executeOperation(valve, valve.getValveOnEndpoint());
                     } catch (IOException e) {
@@ -81,7 +99,7 @@ public class ScheduledTask {
                         valve.setValveFailedCounter(valve.getValveFailedCounter() + 1);
                     }
                 }
-                if (num >= 80 && valve.isValveRunning()) {
+                if (soilData >= 80 && valve.isValveRunning()) {
                     try {
                         restClient.executeOperation(valve, valve.getValveOffEndpoint());
                     } catch (IOException e) {
@@ -93,6 +111,7 @@ public class ScheduledTask {
             } catch (Exception e) {
                 System.out.println("ERROR: Unable to read sensor data from: " + device.getDeviceEndpoint()
                         + ", reason: " + e.getMessage());
+                e.printStackTrace();
 
             }
 
@@ -158,7 +177,7 @@ public class ScheduledTask {
             // Update the values
             valveRepository.save(valve);
             confService.updateConfiguration(configuration, configuration.getConfigurationId());
-            sensorDataList.forEach(sensorData -> sensorDataService.updateSensorData(sensorData, sensorData.getSensorDataId()));
+            sensorDataList.forEach(sensorData -> sensorDataService.updateSensorData(sensorData));
         }
     }
 

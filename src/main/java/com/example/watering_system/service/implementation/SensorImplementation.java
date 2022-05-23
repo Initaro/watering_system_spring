@@ -17,12 +17,12 @@ public class SensorImplementation implements SensorService {
     }
 
     @Override
-    public List<Sensor> getSensorService() {
+    public List<Sensor> getSensorById() {
         return sensorRepository.findAll();
     }
 
     @Override
-    public Sensor getSensorService(int id) {
+    public Sensor getSensorById(int id) {
         return sensorRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid sensor id: " + id));
     }

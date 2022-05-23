@@ -56,6 +56,7 @@ public class Valve implements Serializable {
     @Basic(optional = false)
     @Column(name = "valve_off_endpoint")
     private String valveOffEndpoint;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "valveId")
     @JsonIgnore
     @Transient

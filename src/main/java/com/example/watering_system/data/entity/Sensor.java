@@ -1,5 +1,6 @@
 package com.example.watering_system.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
@@ -47,6 +48,7 @@ public class Sensor implements Serializable {
     private SensorType sensorTypeId;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sensorId")
+    @JsonIgnore
     private List<SensorData> sensorDataList;
 
     public Sensor() {}
@@ -111,7 +113,7 @@ public class Sensor implements Serializable {
 
     @Override
     public String toString() {
-        return "com.example.watering_system.data.entity.watering_system.resources.Sensor[ sensorId=" + sensorId + " ]";
+        return "sensorId = " + sensorId;
     }
 
 }

@@ -17,12 +17,12 @@ public class SensorController {
 
     @GetMapping
     public List<Sensor> getSensor() {
-        return sensorService.getSensorService();
+        return sensorService.getSensorById();
     }
 
     @RequestMapping("/{id}")
     public Sensor getSensor(@PathVariable("id") int id) {
-        return sensorService.getSensorService(id);
+        return sensorService.getSensorById(id);
     }
 
     @PostMapping

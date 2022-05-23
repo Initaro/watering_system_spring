@@ -2,30 +2,28 @@ package com.example.watering_system.data.dao;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * {"temperature": 24.00, "humidity": 15, "TODO soil": 25}
  */
 public class DeviceData {
-
-    private float temperature;
-    private float humidity;
-    private float soil;
+    private Float temperature;
+    private Float humidity;
+    private Float soil;
 
     public DeviceData(String json) throws JsonProcessingException {
         System.out.println("Will try to parse: " + json);
         String[] split = json.split(";");
-        this.soil = Integer.parseInt(split[0]);
-        this.temperature = Float.parseFloat(split[1]);
-        this.humidity = Float.parseFloat(split[2]);
+        this.soil = Float.valueOf(split[0]);
+        this.temperature = Float.valueOf(split[1]);
+        this.humidity = Float.valueOf(split[2]);
     }
 
     public float getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(float temperature) {
+    public void setTemperature(Float temperature) {
         this.temperature = temperature;
     }
 
@@ -33,7 +31,7 @@ public class DeviceData {
         return humidity;
     }
 
-    public void setHumidity(float humidity) {
+    public void setHumidity(Float humidity) {
         this.humidity = humidity;
     }
 
@@ -41,7 +39,7 @@ public class DeviceData {
         return soil;
     }
 
-    public void setSoil(float soil) {
+    public void setSoil(Float soil) {
         this.soil = soil;
     }
 
@@ -52,6 +50,5 @@ public class DeviceData {
                 ", humidity=" + humidity +
                 '}';
     }
-
 
 }
