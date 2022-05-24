@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SensorsActivities.ListDataActivity">
+
+    <Button
+        android:id="@+id/viewWateringLogs"
+        android:layout_width="165dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/view_watering_logs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/viewWarningLogs"
+        android:layout_width="165dp"
+        android:layout_height="84dp"
+        android:text="@string/view_warning_logs"
+        app:layout_constraintBottom_toTopOf="@+id/viewErrorLogs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewWateringLogs"
+        app:layout_constraintVertical_bias="0.509" />
+
+    <Button
+        android:id="@+id/viewErrorLogs"
+        android:layout_width="165dp"
+        android:layout_height="84dp"
+        android:layout_marginBottom="84dp"
+        android:text="@string/view_error_logs"
+        app:layout_constraintBottom_toTopOf="@+id/returnButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/returnButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Return"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.96" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

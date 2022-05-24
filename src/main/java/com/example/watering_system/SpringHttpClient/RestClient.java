@@ -37,6 +37,7 @@ public class RestClient {
         try {
             HttpEntity<String> requestEntity = new HttpEntity<>("", headers);
             ResponseEntity<String> responseEntity = rest.exchange(endpoint, HttpMethod.GET, requestEntity, String.class);
+            System.out.println(responseEntity);
             this.setStatus(responseEntity.getStatusCode());
             valve.setValveFailedOperation(false);
             valve.setValveFailedCounter(0);

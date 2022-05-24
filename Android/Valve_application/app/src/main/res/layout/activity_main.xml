@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/disconnectButton"
+        android:layout_width="205dp"
+        android:layout_height="70dp"
+        android:text="@string/disconnect"
+        app:backgroundTint="#808080"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/listDataButton"
+        android:layout_width="165dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/list_sensor_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.703"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/viewLogsButton"
+        android:layout_width="165dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/view_logs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.703"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listDataButton" />
+
+    <Button
+        android:id="@+id/configureWatering"
+        android:layout_width="165dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/configure_the_watering"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.703"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewLogsButton" />
+
+    <Button
+        android:id="@+id/configureSensorData"
+        android:layout_width="165dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/configure_the_sensor_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.703"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/configureWatering" />
+
+    <Button
+        android:id="@+id/turnOnWatering"
+        android:layout_width="223dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/turn_on_watering"
+        app:backgroundTint="#4CAF50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.611"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/configureSensorData" />
+
+    <Button
+        android:id="@+id/turnOffWatering"
+        android:layout_width="223dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/turn_off_watering"
+        app:backgroundTint="#FF0000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.611"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/turnOnWatering" />
+
+    <!--<Button
+        android:id="@+id/changeLanguage"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:text="@string/a"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.983"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.004" />-->
+
+    <TextView
+        android:id="@+id/activeWatering"
+        android:layout_width="153dp"
+        android:layout_height="20dp"
+        android:text="@string/active_time_of_watering"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/listDataButton"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <TextView
+        android:id="@+id/activeWateringData"
+        android:layout_width="140dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activeWatering" />
+</androidx.constraintlayout.widget.ConstraintLayout>

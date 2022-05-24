@@ -90,19 +90,25 @@ public class ScheduledTask {
                 }
 
                 // for questions only - read 3 times to be sure
-                if (soilData <= 20 && !valve.isValveRunning()) {
+                if (soilData <= 10 && !valve.isValveRunning()) {
                     try {
+                        System.out.println("I GET TO HERE (ON - TRY)");
                         restClient.executeOperation(valve, valve.getValveOnEndpoint());
+                        System.out.println(valve.getValveOnEndpoint());
                     } catch (IOException e) {
+                        System.out.println("I GET TO HERE (ON - CATCH)");
                         valve.setValveFailedEndPoint(valve.getValveOnEndpoint());
                         valve.setValveFailedOperation(true);
                         valve.setValveFailedCounter(valve.getValveFailedCounter() + 1);
                     }
                 }
-                if (soilData >= 80 && valve.isValveRunning()) {
+                if (soilData >= 70 && valve.isValveRunning()) { //TODO - tova ne mi haresva
                     try {
+                        System.out.println("I GET TO HERE (OFF - TRY)");
                         restClient.executeOperation(valve, valve.getValveOffEndpoint());
+                        System.out.println(valve.getValveOffEndpoint());
                     } catch (IOException e) {
+                        System.out.println("I GET TO HERE (OFF - CATCH)");
                         valve.setValveFailedEndPoint(valve.getValveOffEndpoint());
                         valve.setValveFailedOperation(false);
                         valve.setValveFailedCounter(valve.getValveFailedCounter() + 1);

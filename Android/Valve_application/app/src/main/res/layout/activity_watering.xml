@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SensorsActivities.ListDataActivity">
+
+    <!--<TextView
+        android:id="@+id/enterLengthOfWateringTextView"
+        android:layout_width="227dp"
+        android:layout_height="51dp"
+        android:gravity="center"
+        android:text="@string/enter_the_time_of_the_watering"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterTimeOfWateringTextView"
+        app:layout_constraintVertical_bias="0.332" /> -->
+
+    <Button
+        android:id="@+id/returnButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Return"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/add_watering_button"
+        android:layout_width="158dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/add_configuration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/configurations"
+        android:layout_width="428dp"
+        android:layout_height="499dp"
+        app:layout_constraintBottom_toTopOf="@+id/returnButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_watering_button"
+        app:layout_constraintVertical_bias="0.552" />
+
+    <!--<Button
+        android:id="@+id/delete_button"
+        android:layout_width="158dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/delete_configuration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_watering_button" />-->
+</androidx.constraintlayout.widget.ConstraintLayout>
