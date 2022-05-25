@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import com.example.valve_application.MainActivity;
 import com.example.valve_application.R;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -22,8 +20,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import entity.SensorData;
-
 public class ListDataActivity extends AppCompatActivity {
 
     Button returnButton;
@@ -31,18 +27,31 @@ public class ListDataActivity extends AppCompatActivity {
     TextView humidityOfAir;
     TextView soilHumidity;
 
-    SensorData[] sensorData;
+    String temperatureData;
+    String soilData;
+    String humidityData;
 
     private void getSensorsDataDeserialization() throws IOException {
         HttpClient client = new DefaultHttpClient();
-        HttpGet request = new HttpGet("http://192.168.1.101:8080/api/sensorData"); //computer
-        //HttpGet request = new HttpGet("http://192.168.1.103:8080/api/sensorData"); //raspberry
-        HttpResponse response = client.execute(request);
 
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        HttpGet temperatureRequest = new HttpGet("http://192.168.1.101:8080/api/sensorData/get/1"); //computer
+        HttpGet soilRequest = new HttpGet("http://192.168.1.101:8080/api/sensorData/get/2"); //computer
+        HttpGet humidityRequest = new HttpGet("http://192.168.1.101:8080/api/sensorData/get/3"); //computer
+        //HttpGet temperatureRequest = new HttpGet("http://192.168.1.103:8080/api/sensorData/get/1"); //raspberry
+        //HttpGet soilRequest = new HttpGet("http://192.168.1.103:8080/api/sensorData/get/2"); //raspberry
+        //HttpGet humidityRequest = new HttpGet("http://192.168.1.103:8080/api/sensorData/get/3"); //raspberry
 
-        sensorData = gson.fromJson(bufferedReader, SensorData[].class);
+        HttpResponse response1 = client.execute(temperatureRequest);
+        HttpResponse response2 = client.execute(soilRequest);
+        HttpResponse response3 = client.execute(humidityRequest);
+
+        BufferedReader bufferedReader1 = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
+        BufferedReader bufferedReader2 = new BufferedReader(new InputStreamReader(response2.getEntity().getContent()));
+        BufferedReader bufferedReader3 = new BufferedReader(new InputStreamReader(response3.getEntity().getContent()));
+
+        temperatureData = String.valueOf(bufferedReader1.readLine());
+        soilData = String.valueOf(bufferedReader2.readLine());
+        humidityData = String.valueOf(bufferedReader3.readLine());
     }
 
     @Override
@@ -59,9 +68,13 @@ public class ListDataActivity extends AppCompatActivity {
         returnButton = findViewById(R.id.returnButton);
 
         temperatureOfAir = (TextView) findViewById(R.id.temperatureOfAir);
-        //temperatureOfAir.setText("" + sensorData[0]);
+        temperatureOfAir.setText(temperatureData + "°C");
+
         humidityOfAir = (TextView) findViewById(R.id.humidityOfAir);
+        humidityOfAir.setText(humidityData + "%");
+
         soilHumidity = (TextView) findViewById(R.id.soilHumidity);
+        soilHumidity.setText(soilData + "%");
 
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 HttpClient client = new DefaultHttpClient();
-                HttpGet request = new HttpGet("http://192.168.1.109/cm?cmnd=Power%20ON");
+                HttpGet request = new HttpGet("http://192.168.1.109/cm?cmnd=Power ON");
 
                 HttpResponse response = null;
                 try {
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 HttpClient client = new DefaultHttpClient();
-                HttpGet request = new HttpGet("http://192.168.1.109/cm?cmnd=Power%20OFF");
+                HttpGet request = new HttpGet("http://192.168.1.109/cm?cmnd=Power OFF");
 
                 HttpResponse response = null;
                 try {

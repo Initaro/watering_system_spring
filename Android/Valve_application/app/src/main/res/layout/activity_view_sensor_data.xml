@@ -8,21 +8,24 @@
 
     <TextView
         android:id="@+id/humidityOfAir"
-        android:layout_width="178dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="133dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/humidityOfAirTextView" />
 
     <TextView
         android:id="@+id/soilHumidity"
-        android:layout_width="178dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="133dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/humidityOfGroundTextView" />
 
@@ -42,7 +45,7 @@
         android:id="@+id/humidityOfGroundTextView"
         android:layout_width="227dp"
         android:layout_height="51dp"
-        android:layout_marginBottom="280dp"
+        android:layout_marginBottom="168dp"
         android:gravity="center"
         android:text="@string/humidity_of_ground"
         android:textSize="20sp"
@@ -54,7 +57,7 @@
         android:id="@+id/temperatureOfAirTextView"
         android:layout_width="227dp"
         android:layout_height="51dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="40dp"
         android:gravity="center"
         android:text="@string/temperature_of_air"
         android:textSize="20sp"
@@ -72,15 +75,17 @@
         app:layout_constraintBottom_toTopOf="@+id/humidityOfGroundTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/temperatureOfAirTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/temperatureOfAirTextView"
+        app:layout_constraintVertical_bias="0.513" />
 
     <TextView
         android:id="@+id/temperatureOfAir"
-        android:layout_width="178dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="133dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/temperatureOfAirTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

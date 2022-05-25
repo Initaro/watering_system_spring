@@ -30,8 +30,8 @@
 
     <Button
         android:id="@+id/add_watering_button"
-        android:layout_width="158dp"
-        android:layout_height="66dp"
+        android:layout_width="189dp"
+        android:layout_height="65dp"
         android:layout_marginTop="4dp"
         android:text="@string/add_configuration"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,14 +40,14 @@
 
     <ListView
         android:id="@+id/configurations"
-        android:layout_width="428dp"
-        android:layout_height="499dp"
+        android:layout_width="398dp"
+        android:layout_height="492dp"
         app:layout_constraintBottom_toTopOf="@+id/returnButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_watering_button"
-        app:layout_constraintVertical_bias="0.552" />
+        app:layout_constraintVertical_bias="0.557" />
 
     <!--<Button
         android:id="@+id/delete_button"

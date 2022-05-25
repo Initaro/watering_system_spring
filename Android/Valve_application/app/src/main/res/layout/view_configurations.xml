@@ -56,8 +56,8 @@
         android:id="@+id/monday"
         android:layout_width="115dp"
         android:layout_height="50dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="28dp"
         android:text="@string/monday"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,8 +67,8 @@
         android:id="@+id/tuesday"
         android:layout_width="115dp"
         android:layout_height="50dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="28dp"
         android:text="@string/tuesday"
         app:layout_constraintStart_toEndOf="@+id/monday"
@@ -79,18 +79,18 @@
         android:layout_width="115dp"
         android:layout_height="50dp"
         android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:text="@string/Wednesday"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.652"
-        app:layout_constraintStart_toEndOf="@+id/tuesday"
         app:layout_constraintTop_toBottomOf="@+id/activeTimeEdit" />
 
     <CheckBox
         android:id="@+id/thursday"
         android:layout_width="115dp"
         android:layout_height="50dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="20dp"
         android:text="@string/thursday"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,12 +100,10 @@
         android:id="@+id/friday"
         android:layout_width="115dp"
         android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
         android:text="@string/friday"
-        app:layout_constraintEnd_toStartOf="@+id/saturday"
-        app:layout_constraintHorizontal_bias="0.97"
         app:layout_constraintStart_toEndOf="@+id/thursday"
         app:layout_constraintTop_toBottomOf="@+id/tuesday" />
 
@@ -125,9 +123,10 @@
         android:layout_width="115dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginRight="136dp"
         android:text="@string/sunday"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/friday" />
 
     <TextView
@@ -143,14 +142,15 @@
 
     <EditText
         android:id="@+id/firstWateringEdit"
-        android:layout_width="253dp"
-        android:layout_height="48dp"
+        android:layout_width="257dp"
+        android:layout_height="42dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_gravity="center"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="24dp"
+        android:foregroundGravity="center"
         android:gravity="center"
         android:text="@string/enter_hours"
         app:layout_constraintBottom_toTopOf="@+id/secondWateringEdit"
@@ -170,13 +170,14 @@
     <EditText
         android:id="@+id/secondWateringEdit"
         android:layout_width="253dp"
-        android:layout_height="48dp"
+        android:layout_height="42dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_gravity="center"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="28dp"
+        android:foregroundGravity="center"
         android:gravity="center"
         android:text="@string/enter_hours"
         app:layout_constraintBottom_toTopOf="@+id/thirdWateringEdit"
@@ -195,15 +196,24 @@
     <EditText
         android:id="@+id/thirdWateringEdit"
         android:layout_width="253dp"
-        android:layout_height="48dp"
+        android:layout_height="42dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_gravity="center"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:foregroundGravity="center"
         android:gravity="center"
         android:text="@string/enter_hours"
         app:layout_constraintBottom_toTopOf="@+id/saveButton"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
