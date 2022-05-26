@@ -11,13 +11,13 @@ public class Configuration implements Serializable {
 
     private Integer configurationId;
     private int activeTime;
-    private String monday;
-    private String tuesday;
-    private String wednesday;
-    private String thursday;
-    private String friday;
-    private String saturday;
-    private String sunday;
+    private boolean monday;
+    private boolean tuesday;
+    private boolean wednesday;
+    private boolean thursday;
+    private boolean friday;
+    private boolean saturday;
+    private boolean sunday;
     private Integer wateringActiveCounter;
     private int configurationChangedBy;
 
@@ -49,59 +49,59 @@ public class Configuration implements Serializable {
         this.wateringActiveCounter = wateringActiveCounter;
     }
 
-    public String getMonday() {
+    public Boolean getMonday() {
         return monday;
     }
 
-    public void setMonday(String monday) {
+    public void setMonday(Boolean monday) {
         this.monday = monday;
     }
 
-    public String getTuesday() {
+    public boolean getTuesday() {
         return tuesday;
     }
 
-    public void setTuesday(String tuesday) {
+    public void setTuesday(boolean tuesday) {
         this.tuesday = tuesday;
     }
 
-    public String getWednesday() {
+    public boolean getWednesday() {
         return wednesday;
     }
 
-    public void setWednesday(String wednesday) {
+    public void setWednesday(boolean wednesday) {
         this.wednesday = wednesday;
     }
 
-    public String getThursday() {
+    public boolean getThursday() {
         return thursday;
     }
 
-    public void setThursday(String thursday) {
+    public void setThursday(boolean thursday) {
         this.thursday = thursday;
     }
 
-    public String getFriday() {
+    public boolean getFriday() {
         return friday;
     }
 
-    public void setFriday(String friday) {
+    public void setFriday(boolean friday) {
         this.friday = friday;
     }
 
-    public String getSaturday() {
+    public boolean getSaturday() {
         return saturday;
     }
 
-    public void setSaturday(String saturday) {
+    public void setSaturday(boolean saturday) {
         this.saturday = saturday;
     }
 
-    public String getSunday() {
+    public boolean getSunday() {
         return sunday;
     }
 
-    public void setSunday(String sunday) {
+    public void setSunday(boolean sunday) {
         this.sunday = sunday;
     }
 

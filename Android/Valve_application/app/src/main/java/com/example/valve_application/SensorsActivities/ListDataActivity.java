@@ -34,12 +34,12 @@ public class ListDataActivity extends AppCompatActivity {
     private void getSensorsDataDeserialization() throws IOException {
         HttpClient client = new DefaultHttpClient();
 
-        HttpGet temperatureRequest = new HttpGet("http://192.168.1.101:8080/api/sensorData/get/1"); //computer
-        HttpGet soilRequest = new HttpGet("http://192.168.1.101:8080/api/sensorData/get/2"); //computer
-        HttpGet humidityRequest = new HttpGet("http://192.168.1.101:8080/api/sensorData/get/3"); //computer
-        //HttpGet temperatureRequest = new HttpGet("http://192.168.1.103:8080/api/sensorData/get/1"); //raspberry
-        //HttpGet soilRequest = new HttpGet("http://192.168.1.103:8080/api/sensorData/get/2"); //raspberry
-        //HttpGet humidityRequest = new HttpGet("http://192.168.1.103:8080/api/sensorData/get/3"); //raspberry
+        //HttpGet temperatureRequest = new HttpGet("http://192.168.1.101:8080/api/sensorData/get/1"); //computer
+        //HttpGet soilRequest = new HttpGet("http://192.168.1.101:8080/api/sensorData/get/2"); //computer
+        //HttpGet humidityRequest = new HttpGet("http://192.168.1.101:8080/api/sensorData/get/3"); //computer
+        HttpGet temperatureRequest = new HttpGet("http://192.168.1.103:8080/api/sensorData/get/1"); //raspberry
+        HttpGet soilRequest = new HttpGet("http://192.168.1.103:8080/api/sensorData/get/2"); //raspberry
+        HttpGet humidityRequest = new HttpGet("http://192.168.1.103:8080/api/sensorData/get/3"); //raspberry
 
         HttpResponse response1 = client.execute(temperatureRequest);
         HttpResponse response2 = client.execute(soilRequest);
