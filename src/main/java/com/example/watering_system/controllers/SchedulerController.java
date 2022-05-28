@@ -2,7 +2,6 @@ package com.example.watering_system.controllers;
 
 import com.example.watering_system.config.ScheduledTask;
 import com.example.watering_system.data.entity.Scheduler;
-import com.example.watering_system.data.entity.Sensor;
 import com.example.watering_system.service.SchedulerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,18 +36,18 @@ public class SchedulerController {
         return schedulerService.getSchedulerById(id);
     }
 
-   /* @PostMapping
-    public Sensor createSensor(@RequestBody Sensor sensor) {
-        return sensorService.createSensor(sensor);
+    @PostMapping
+    public Scheduler createScheduler(@RequestBody Scheduler scheduler) {
+        return schedulerService.createScheduler(scheduler);
     }
 
     @PutMapping(value = "/{id}")
-    public Sensor updateSensor(@RequestBody Sensor sensor, @PathVariable("id") int id) {
-        return sensorService.updateSensor(sensor, id);
+    public Scheduler updateScheduler(@RequestBody Scheduler scheduler) {
+        return schedulerService.updateScheduler(scheduler);
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public void deleteSensor(@PathVariable("id") int id) {
-        sensorService.deleteSensorService(id);
-    }*/
+    public void deleteScheduler(@PathVariable("id") int id) {
+        schedulerService.deleteSchedulerService(id);
+    }
 }
