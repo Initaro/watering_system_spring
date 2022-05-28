@@ -45,11 +45,12 @@ public class ScheduledTask {
     @Autowired
     SensorRepository sensorRepository;
 
-    private boolean enabled;
+    @Autowired
+    SchedulerService schedulerService;
 
     @Scheduled(fixedRate = 60000)
     public void worker() {
-        if (enabled) {
+        if (schedulerService.getSchedulerById(1).getState()) {
             System.out.println("Scheduler running...");
             List<SensorData> sensorDataList = new ArrayList<>();
 
@@ -98,6 +99,7 @@ public class ScheduledTask {
                             System.out.println("I GET TO HERE (ON - TRY)");
                             restClient.executeOperation(valve, valve.getValveOnEndpoint());
                             System.out.println(valve.getValveOnEndpoint());
+                            valve.setValveRunning(true);
                         } catch (IOException e) {
                             System.out.println("I GET TO HERE (ON - CATCH)");
                             valve.setValveFailedEndPoint(valve.getValveOnEndpoint());
@@ -105,11 +107,12 @@ public class ScheduledTask {
                             valve.setValveFailedCounter(valve.getValveFailedCounter() + 1);
                         }
                     }
-                    if (soilData >= 70 && valve.isValveRunning()) { //TODO - tova ne mi haresva
+                    if (soilData >= 80 && valve.isValveRunning()) { //TODO - tova ne mi haresva
                         try {
                             System.out.println("I GET TO HERE (OFF - TRY)");
                             restClient.executeOperation(valve, valve.getValveOffEndpoint());
                             System.out.println(valve.getValveOffEndpoint());
+                            valve.setValveRunning(false);
                         } catch (IOException e) {
                             System.out.println("I GET TO HERE (OFF - CATCH)");
                             valve.setValveFailedEndPoint(valve.getValveOffEndpoint());
@@ -150,6 +153,7 @@ public class ScheduledTask {
                 if (valve.isValveRunning() && configuration.getWateringActiveCounter() >= activeTime) {
                     try {
                         restClient.executeOperation(valve, valve.getValveOffEndpoint());
+                        valve.setValveRunning(false);
                     } catch (IOException e) {
                         valve.setValveFailedEndPoint(valve.getValveOffEndpoint());
                         valve.setValveFailedOperation(false);
@@ -192,11 +196,17 @@ public class ScheduledTask {
     }
 
     public void enableScheduler() {
-        this.enabled = true;
+        Scheduler scheduler = schedulerService.getSchedulerById(1);
+        scheduler.setState(true);
+        schedulerService.updateScheduler(scheduler);
+        System.out.println(schedulerService.getSchedulerById(1).getState());
     }
 
     public void disableScheduler() {
-        this.enabled = false;
+        Scheduler scheduler = schedulerService.getSchedulerById(1);
+        scheduler.setState(false);
+        schedulerService.updateScheduler(scheduler);
+        System.out.println(schedulerService.getSchedulerById(1).getState());
         System.out.println("Stopping scheduler...");
     }
 
@@ -231,13 +241,5 @@ public class ScheduledTask {
             }
         }
         return true;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 }
