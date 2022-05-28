@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Valve_application"
         tools:ignore="ExtraText"
-        tools:targetApi="n">
+        tools:targetApi="29">
         <activity
             android:name=".LogsActivities.ErrorLogsActivity"
             android:exported="false" />

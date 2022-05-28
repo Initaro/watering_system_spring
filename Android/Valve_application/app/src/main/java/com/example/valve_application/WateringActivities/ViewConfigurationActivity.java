@@ -58,7 +58,7 @@ public class ViewConfigurationActivity extends AppCompatActivity {
 
     private void getWateringHoursDeserialization() throws IOException {
         HttpClient client = new DefaultHttpClient();
-        //HttpGet request = new HttpGet("http://192.168.1.101:8080/api/wateringHour"); //computer
+//        HttpGet request = new HttpGet("http://192.168.1.101:8080/api/wateringHour"); //computer
         HttpGet request = new HttpGet("http://192.168.1.103:8080/api/wateringHour"); //raspberry
         HttpResponse response = client.execute(request);
 
@@ -70,7 +70,7 @@ public class ViewConfigurationActivity extends AppCompatActivity {
 
     private void sendConfiguration(Configuration configuration) throws IOException {
         HttpClient client = new DefaultHttpClient();
-        //HttpPut httpPut = new HttpPut("http://192.168.1.101:8080/api/configuration/1"); //computer
+//        HttpPut httpPut = new HttpPut("http://192.168.1.101:8080/api/configuration/1"); //computer
         HttpPut httpPut = new HttpPut("http://192.168.1.103:8080/api/configuration/1"); //raspberry
 
         Gson gson = new Gson();
@@ -86,9 +86,9 @@ public class ViewConfigurationActivity extends AppCompatActivity {
 
     private void sendWateringHour(List<WateringHour> wateringHourList) throws IOException {
         HttpClient client = new DefaultHttpClient();
-        //HttpPut httpPutHour1 = new HttpPut("http://192.168.1.101:8080/api/wateringHour/1"); //computer
-        //HttpPut httpPutHour2 = new HttpPut("http://192.168.1.101:8080/api/wateringHour/2"); //computer
-        //HttpPut httpPutHour3 = new HttpPut("http://192.168.1.101:8080/api/wateringHour/3"); //computer
+//        HttpPut httpPutHour1 = new HttpPut("http://192.168.1.101:8080/api/wateringHour/1"); //computer
+//        HttpPut httpPutHour2 = new HttpPut("http://192.168.1.101:8080/api/wateringHour/2"); //computer
+//        HttpPut httpPutHour3 = new HttpPut("http://192.168.1.101:8080/api/wateringHour/3"); //computer
         HttpPut httpPutHour1 = new HttpPut("http://192.168.1.103:8080/api/wateringHour/1"); //raspberry
         HttpPut httpPutHour2 = new HttpPut("http://192.168.1.103:8080/api/wateringHour/2"); //raspberry
         HttpPut httpPutHour3 = new HttpPut("http://192.168.1.103:8080/api/wateringHour/3"); //raspberry

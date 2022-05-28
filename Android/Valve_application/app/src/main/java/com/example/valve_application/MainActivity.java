@@ -26,6 +26,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import entity.Valve;
+
 public class MainActivity extends AppCompatActivity {
 
     Button disconnectButton;
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void getConfigurationDeserialization() throws IOException {
         HttpClient client = new DefaultHttpClient();
-        //HttpGet request = new HttpGet("http://192.168.1.101:8080/api/configuration/activeTime/1"); //computer
+//        HttpGet request = new HttpGet("http://192.168.1.101:8080/api/configuration/activeTime/1"); //computer
         HttpGet request = new HttpGet("http://192.168.1.103:8080/api/configuration/activeTime/1"); //raspberry
         HttpResponse response = client.execute(request);
 
@@ -72,19 +74,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 HttpClient client = new DefaultHttpClient();
-                HttpGet request = new HttpGet("http://192.168.1.109/cm?cmnd=Power ON");
+                HttpGet request = new HttpGet("http://192.168.1.109/cm?cmnd=Power%20ON");
 
                 HttpResponse response = null;
                 try {
                     response = client.execute(request);
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println("Do i get error!!!! first catch");
                 }
 
                 try {
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println("Do i get error!!!! second catch");
                 }
             }
         });
@@ -94,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 HttpClient client = new DefaultHttpClient();
-                HttpGet request = new HttpGet("http://192.168.1.109/cm?cmnd=Power OFF");
+                HttpGet request = new HttpGet("http://192.168.1.109/cm?cmnd=Power%20OFF");
 
                 HttpResponse response = null;
                 try {

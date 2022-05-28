@@ -45,8 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     private void switchActivities() throws IOException {
         try {
             HttpClient client = new DefaultHttpClient();
-
-            //HttpGet request = new HttpGet("http://192.168.1.101:8080/api/test"); //computer
+//            HttpGet request = new HttpGet("http://192.168.1.101:8080/api/test"); //computer
             HttpGet request = new HttpGet("http://192.168.1.103:8080/api/test"); //raspberry
 
             HttpResponse response = client.execute(request);
