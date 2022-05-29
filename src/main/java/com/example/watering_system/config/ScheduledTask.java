@@ -50,6 +50,7 @@ public class ScheduledTask {
 
     @Scheduled(fixedRate = 60000)
     public void worker() {
+        System.out.println("STARTING-------------------------------------------------------------------");
         if (schedulerService.getSchedulerById(1).getState()) {
             System.out.println("Scheduler running...");
             List<SensorData> sensorDataList = new ArrayList<>();
