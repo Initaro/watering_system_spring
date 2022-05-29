@@ -10,4 +10,8 @@ public interface SchedulerService {
     Scheduler updateScheduler(Scheduler scheduler);
 
     void deleteSchedulerService(int id);
+
+    void enableScheduler();
+
+    void disableScheduler();
 }

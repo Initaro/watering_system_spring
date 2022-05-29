@@ -1,6 +1,5 @@
 package com.example.watering_system.controllers;
 
-import com.example.watering_system.config.ScheduledTask;
 import com.example.watering_system.data.entity.Scheduler;
 import com.example.watering_system.service.SchedulerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,21 +9,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/scheduler")
 public class SchedulerController {
 
-    @Autowired
-    private ScheduledTask scheduledTask;
+    //@Autowired
+    //private ScheduledTask scheduledTask;
 
     @Autowired
     private SchedulerService schedulerService;
-
-    //http://localhost/api/scheduler?enabled=true
-    @PostMapping
-    public void updateScheduler(@RequestParam(name = "enabled") Boolean enabled) {
-        if (enabled) {
-            scheduledTask.enableScheduler();
-        } else {
-            scheduledTask.disableScheduler();
-        }
-    }
 
     @GetMapping
     public String getStatus() {
@@ -36,18 +25,23 @@ public class SchedulerController {
         return schedulerService.getSchedulerById(id);
     }
 
+    //http://localhost/api/scheduler?enabled=true
     @PostMapping
-    public Scheduler createScheduler(@RequestBody Scheduler scheduler) {
-        return schedulerService.createScheduler(scheduler);
+    public void updateScheduler(@RequestParam(name = "enabled") Boolean enabled) {
+        if (enabled) {
+            schedulerService.enableScheduler();
+        } else {
+            schedulerService.disableScheduler();
+        }
     }
 
     @PutMapping(value = "/{id}")
-    public Scheduler updateScheduler(@RequestBody Scheduler scheduler) {
+    public Scheduler updateScheduler1(@RequestBody Scheduler scheduler) {
         return schedulerService.updateScheduler(scheduler);
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public void deleteScheduler(@PathVariable("id") int id) {
+    public void deleteScheduler1(@PathVariable("id") int id) {
         schedulerService.deleteSchedulerService(id);
     }
 }

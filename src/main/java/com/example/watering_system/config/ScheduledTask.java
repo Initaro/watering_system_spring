@@ -101,7 +101,7 @@ public class ScheduledTask {
                             System.out.println(valve.getValveOnEndpoint());
                             valve.setValveRunning(true);
                         } catch (IOException e) {
-                            System.out.println("I GET TO HERE (ON - CATCH)");
+                            System.out.println("I GET TO HERE (ON - CATCH)" + e.getMessage());
                             valve.setValveFailedEndPoint(valve.getValveOnEndpoint());
                             valve.setValveFailedOperation(true);
                             valve.setValveFailedCounter(valve.getValveFailedCounter() + 1);
@@ -114,7 +114,7 @@ public class ScheduledTask {
                             System.out.println(valve.getValveOffEndpoint());
                             valve.setValveRunning(false);
                         } catch (IOException e) {
-                            System.out.println("I GET TO HERE (OFF - CATCH)");
+                            System.out.println("I GET TO HERE (OFF - CATCH)" + e.getMessage());
                             valve.setValveFailedEndPoint(valve.getValveOffEndpoint());
                             valve.setValveFailedOperation(false);
                             valve.setValveFailedCounter(valve.getValveFailedCounter() + 1);
@@ -158,11 +158,16 @@ public class ScheduledTask {
                         valve.setValveFailedEndPoint(valve.getValveOffEndpoint());
                         valve.setValveFailedOperation(false);
                         valve.setValveFailedCounter(valve.getValveFailedCounter() + 1);
+                        System.out.println("Unable to execute operation. Valve off " + e.getMessage());
                     }
                     // if the operation failed or not, the active time is reached, so we clear the counter
                     configuration.setWateringActiveCounter(0);
                 } else if (valve.isValveRunning()) {
-                    configuration.setWateringActiveCounter(configuration.getWateringActiveCounter() + 1);
+                    if(configuration.getWateringActiveCounter() != null) {
+                        configuration.setWateringActiveCounter(configuration.getWateringActiveCounter() + 1);
+                    }else{
+                        configuration.setWateringActiveCounter(0);
+                    }
                 } else {
                     if (shouldWateringThisDay(configuration, dayOfWeek.getValue())) {
                         DB_HOURS:
@@ -173,13 +178,14 @@ public class ScheduledTask {
                                 if (minute == Integer.parseInt(split[1]) && !valve.isValveRunning()) {
                                     try {
                                         System.out.println("WATERING: ACTIVATED");
-                                        valve.setValveRunning(true);
                                         configuration.setWateringActiveCounter(0);
                                         restClient.executeOperation(valve, valve.getValveOnEndpoint());
+                                        valve.setValveRunning(true);
                                     } catch (IOException e) {
                                         valve.setValveFailedEndPoint(valve.getValveOnEndpoint());
                                         valve.setValveFailedOperation(true);
                                         valve.setValveFailedCounter(valve.getValveFailedCounter() + 1);
+                                        System.out.println("Unable to activate watering " + e.getMessage());
                                     }
                                 }
                             }
@@ -193,21 +199,6 @@ public class ScheduledTask {
                 sensorDataList.forEach(sensorData -> sensorDataService.updateSensorData(sensorData));
             }
         }
-    }
-
-    public void enableScheduler() {
-        Scheduler scheduler = schedulerService.getSchedulerById(1);
-        scheduler.setState(true);
-        schedulerService.updateScheduler(scheduler);
-        System.out.println(schedulerService.getSchedulerById(1).getState());
-    }
-
-    public void disableScheduler() {
-        Scheduler scheduler = schedulerService.getSchedulerById(1);
-        scheduler.setState(false);
-        schedulerService.updateScheduler(scheduler);
-        System.out.println(schedulerService.getSchedulerById(1).getState());
-        System.out.println("Stopping scheduler...");
     }
 
     private boolean shouldWateringThisDay(Configuration configuration, int dayOfWeek) {
@@ -232,12 +223,14 @@ public class ScheduledTask {
             }
 
             try { /*За подобрение на системата е най-добре да се свърже второ физическо реле, която да прекъсне тока при повреда без нуждата от връзка към рутера */
+                System.out.println("Try to execute last failed endpoint: " + valve.getValveFailedEndPoint());
                 restClient.executeOperation(valve, valve.getValveFailedEndPoint());
                 valve.setValveFailedEndPoint("");
                 valve.setValveFailedOperation(false);
                 valveFailedCounter = 0;
             } catch (IOException e) {
                 valve.setValveFailedCounter(valveFailedCounter + 1);
+                System.out.println("Unable to get failed endpoint " + e.getMessage());
             }
         }
         return true;

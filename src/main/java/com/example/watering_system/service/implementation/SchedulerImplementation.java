@@ -34,4 +34,19 @@ public class SchedulerImplementation implements SchedulerService {
     public void deleteSchedulerService(int id) {
         schedulerRepository.deleteById(id);
     }
+
+    public void enableScheduler() {
+        Scheduler scheduler = getSchedulerById(1);
+        scheduler.setState(true);
+        updateScheduler(scheduler);
+        System.out.println(getSchedulerById(1).getState());
+    }
+
+    public void disableScheduler() {
+        Scheduler scheduler = getSchedulerById(1);
+        scheduler.setState(false);
+        updateScheduler(scheduler);
+        System.out.println(getSchedulerById(1).getState());
+        System.out.println("Stopping scheduler...");
+    }
 }
