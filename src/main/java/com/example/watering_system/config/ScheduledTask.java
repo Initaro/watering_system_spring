@@ -100,6 +100,7 @@ public class ScheduledTask {
                             restClient.executeOperation(valve, valve.getValveOnEndpoint());
                             System.out.println(valve.getValveOnEndpoint());
                             valve.setValveRunning(true);
+                            System.out.println("Set valve running true (extreme)");
                         } catch (IOException e) {
                             System.out.println("I GET TO HERE (ON - CATCH)" + e.getMessage());
                             valve.setValveFailedEndPoint(valve.getValveOnEndpoint());
@@ -113,6 +114,7 @@ public class ScheduledTask {
                             restClient.executeOperation(valve, valve.getValveOffEndpoint());
                             System.out.println(valve.getValveOffEndpoint());
                             valve.setValveRunning(false);
+                            System.out.println("Set valve running false (extreme)");
                         } catch (IOException e) {
                             System.out.println("I GET TO HERE (OFF - CATCH)" + e.getMessage());
                             valve.setValveFailedEndPoint(valve.getValveOffEndpoint());
@@ -154,12 +156,16 @@ public class ScheduledTask {
                     try {
                         restClient.executeOperation(valve, valve.getValveOffEndpoint());
                         valve.setValveRunning(false);
+                        System.out.println("Set valve running false (automation)");
                     } catch (IOException e) {
                         valve.setValveFailedEndPoint(valve.getValveOffEndpoint());
                         valve.setValveFailedOperation(false);
                         valve.setValveFailedCounter(valve.getValveFailedCounter() + 1);
                         System.out.println("Unable to execute operation. Valve off " + e.getMessage());
                     }
+
+                    System.out.println("Is updated valve running: " + valve.isValveRunning());
+
                     // if the operation failed or not, the active time is reached, so we clear the counter
                     configuration.setWateringActiveCounter(0);
                 } else if (valve.isValveRunning()) {
@@ -181,6 +187,7 @@ public class ScheduledTask {
                                         configuration.setWateringActiveCounter(0);
                                         restClient.executeOperation(valve, valve.getValveOnEndpoint());
                                         valve.setValveRunning(true);
+                                        System.out.println("Set valve running true (automation)");
                                     } catch (IOException e) {
                                         valve.setValveFailedEndPoint(valve.getValveOnEndpoint());
                                         valve.setValveFailedOperation(true);
