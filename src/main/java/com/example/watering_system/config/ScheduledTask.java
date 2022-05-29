@@ -52,7 +52,7 @@ public class ScheduledTask {
     public void worker() {
         System.out.println("STARTING-------------------------------------------------------------------");
         if (schedulerService.getSchedulerById(1).getState()) {
-            System.out.println("Scheduler running...");
+            System.out.println("\nScheduler running...");
             List<SensorData> sensorDataList = new ArrayList<>();
 
             //check the soil moisture data

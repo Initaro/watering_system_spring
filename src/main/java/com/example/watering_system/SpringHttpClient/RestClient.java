@@ -35,6 +35,7 @@ public class RestClient {
 
     public String executeOperation(Valve valve, String endpoint) throws IOException {
         try {
+            System.out.println("Will try to execute endpoint" + endpoint);
             HttpEntity<String> requestEntity = new HttpEntity<>("", headers);
             ResponseEntity<String> responseEntity = rest.exchange(endpoint, HttpMethod.GET, requestEntity, String.class);
             System.out.println(responseEntity);
