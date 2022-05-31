@@ -34,8 +34,8 @@ public class WarningLogsActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void getLogsDeserialization() throws IOException {
         HttpClient client = new DefaultHttpClient();
-        HttpGet request = new HttpGet("http://192.168.1.101:8080/api/log/logLevel/warning"); //computer
-        //HttpGet request = new HttpGet("http://192.168.1.103:8080/api/log/logLevel/warning"); //raspberry
+        //HttpGet request = new HttpGet("http://192.168.1.101:8080/api/log/logLevel/warning"); //computer
+        HttpGet request = new HttpGet("http://192.168.1.103:8080/api/log/logLevel/warning"); //raspberry
         HttpResponse response = client.execute(request);
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));

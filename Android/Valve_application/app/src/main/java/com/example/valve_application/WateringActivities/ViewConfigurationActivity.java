@@ -132,6 +132,8 @@ public class ViewConfigurationActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        int activeTimeCounter = configuration.getWateringActiveCounter();
+
         returnButton = findViewById(R.id.returnButtonViewConfiguration);
         saveButton = findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -140,6 +142,7 @@ public class ViewConfigurationActivity extends AppCompatActivity {
                 Configuration configuration = new Configuration();
 
                 configuration.setActiveTime(Integer.parseInt(activeTimeEdit.getText().toString()));
+                configuration.setWateringActiveCounter(activeTimeCounter);
 
                 if(monday.isChecked()){
                     configuration.setMonday(true);

@@ -123,10 +123,10 @@
         android:layout_width="115dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="148dp"
-        android:layout_marginRight="148dp"
         android:text="@string/sunday"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/friday" />
 
     <TextView
